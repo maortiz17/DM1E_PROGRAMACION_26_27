@@ -1,0 +1,10 @@
+# Salida de compilación
+bin/
+*.class
+
+# Metadatos locales del sistema y Eclipse que no deben compartirse
+.metadata/
+*.log
+.recommenders/
+.DS_Store
+Thumbs.db
