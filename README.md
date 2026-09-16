@@ -1,6 +1,6 @@
 # Programación - 1º DAM (Curso 2026/2027)
 
-Repositorio con el código fuente, ejemplos prácticos y ejercicios explicados durante las clases teóricas y de laboratorio.
+Repositorio con el código fuente, ejemplos prácticos y ejercicios explicados durante las clases teóricas y prácticas.
 
 ---
 
