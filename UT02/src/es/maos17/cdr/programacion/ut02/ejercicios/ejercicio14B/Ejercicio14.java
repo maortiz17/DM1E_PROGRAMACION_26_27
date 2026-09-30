@@ -1,8 +1,9 @@
-package es.maos17.cdr.programacion.ut02.ejercicios.ejercicio14;
+package es.maos17.cdr.programacion.ut02.ejercicios.ejercicio14B;
 
 import java.util.Scanner;
 
 public class Ejercicio14 {
+
 	/*
 	 * La política de cobro de una compañía telefónica es: cuando se realiza una
 	 * llamada, el cobro es por el tiempo que ésta dura, de tal forma que los
@@ -47,7 +48,6 @@ public class Ejercicio14 {
 		System.out.print("Día de la semana (1-7): ");
 		diaSemana = Integer.parseInt(scanner.nextLine());
 
-
 		switch (diaSemana) {
 		case 1, 2, 3, 4, 5, 6:
 			System.out.print("Mañana/tarde(M/T): ");
@@ -73,30 +73,20 @@ public class Ejercicio14 {
 			System.out.println("Duración errónea");
 			return;
 		} else {
-			double minutosRestantes = duracionLlamada;
-			if (minutosRestantes <= TRAMO1) {
-				precioTramo1 = minutosRestantes * COSTE_TRAMO1;
-				minutosRestantes = 0;
-			} else {
+			if (duracionLlamada >= (TRAMO1 + TRAMO2 + TRAMO3)) {
 				precioTramo1 = TRAMO1 * COSTE_TRAMO1;
-				minutosRestantes -= TRAMO1;
-
-				if (minutosRestantes <= TRAMO2) {
-					precioTramo2 += minutosRestantes * COSTE_TRAMO2;
-					minutosRestantes = 0;
-				} else {
-					precioTramo2 += TRAMO2 * COSTE_TRAMO2;
-					minutosRestantes -= TRAMO2;
-
-					if (minutosRestantes <= TRAMO3) {
-						precioTramo3 += minutosRestantes * COSTE_TRAMO3;
-						minutosRestantes = 0;
-					} else {
-						precioTramo3 += TRAMO3 * COSTE_TRAMO3;
-						minutosRestantes -= TRAMO3;
-						precioTramo4 = minutosRestantes * COSTE_TRAMO4;
-					}
-				}
+				precioTramo2 = TRAMO2 * COSTE_TRAMO2;
+				precioTramo3 = TRAMO3 * COSTE_TRAMO3;
+				precioTramo4 = (duracionLlamada - (TRAMO1 + TRAMO2 + TRAMO3)) * COSTE_TRAMO4;
+			} else if (duracionLlamada >= (TRAMO1 + TRAMO2)) {
+				precioTramo1 = TRAMO1 * COSTE_TRAMO1;
+				precioTramo2 = TRAMO2 * COSTE_TRAMO2;
+				precioTramo3 = (duracionLlamada - (TRAMO1 + TRAMO2)) * COSTE_TRAMO3;
+			} else if (duracionLlamada >= TRAMO1) {
+				precioTramo1 = TRAMO1 * COSTE_TRAMO1;
+				precioTramo2 = (duracionLlamada - TRAMO1) * COSTE_TRAMO2;
+			} else {
+				precioTramo1 = duracionLlamada * COSTE_TRAMO1;
 			}
 		}
 
@@ -110,4 +100,5 @@ public class Ejercicio14 {
 		System.out.printf("El coste de la llamada con impuestos es de %.2f €\n", precioFinal);
 		System.out.printf("Impuestos: %.2f €\n", precioFinal - subtotal);
 	}
+
 }
